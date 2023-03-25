@@ -1,5 +1,6 @@
 package com.example.userlogin;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,14 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class MainActivity extends AppCompatActivity {
 
-    EditText USERID , PASSWORD ;
+    public EditText USERID , PASSWORD ;
     Button LOGIN ;
-
-    Datamodel datamodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,54 +43,55 @@ public class MainActivity extends AppCompatActivity {
         LOGIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = USERID.getText().toString();
-                String pass = PASSWORD.getText().toString();
-                if (user.isEmpty() || user.length()<2) {
-                    USERID.setError("userid greter than 2");
+
+                if (USERID.getText().toString().isEmpty() || PASSWORD.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this, "UserId & Password not be Null !!!", Toast.LENGTH_SHORT).show();
                 }
-                if (pass.isEmpty() || pass.length()<6) {
-                    PASSWORD.setError("password fill & greter than 6");
+                else{
+                    checking(USERID.getText().toString() , PASSWORD.getText().toString().replace("#" , "%23"));
                 }
-
-                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url = "http://103.125.53.126:9222/api/LoadingList?userid="+user+"&password="+pass;
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject obj = new JSONObject(response);
-                                    String status = obj.getString("TotalQuantity");
-                                    if (status.equals("0.0")) {
-                                        String message = obj.getString("Result");
-                                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                                    } else if (status.equals("False")) {
-                                        SharedPreferences sp = getSharedPreferences("credentials", MODE_PRIVATE);
-
-                                        String userid = datamodel.getUserid();
-                                        String password = datamodel.getPassword();
-                                        SharedPreferences.Editor editor = sp.edit();
-                                        editor.putString("userid", userid);
-                                        editor.putString("password", password);
-                                        editor.commit();
-                                        Intent i = new Intent(MainActivity.this, MainActivity2.class);
-                                        startActivity(i);
-                                        finish();
-                                    }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                queue.add(stringRequest);
             }
         });
     }
+
+    private void checking(String user , String pass  ) {
+        USERID.setText(user);
+        PASSWORD.setText(pass);
+
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        String url = "http://103.125.53.126:9222/api/LoadingList?userid=" + user + "&password=" + pass;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String status = obj.getString("Result");
+
+                            if (status.equals("True")) {
+                                SharedPreferences sp = getSharedPreferences("credentials", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.commit();
+                                Intent i = new Intent(MainActivity.this, MainActivity2.class);
+                                Toast.makeText(MainActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Incorrect Userid & Password !! ", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "Please Connect Internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(stringRequest);
     }
+}
+
