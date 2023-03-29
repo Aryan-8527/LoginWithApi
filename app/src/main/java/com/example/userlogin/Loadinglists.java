@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userlogin.APi.LoadingListApi;
@@ -23,7 +25,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Loadinglists extends AppCompatActivity {
 
     private RecyclerView recyclerView ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,14 @@ public class Loadinglists extends AppCompatActivity {
                     Toast.makeText(Loadinglists.this, response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 List<LoadingListModel> loadingListModelList = response.body();
+                Log.d("Aryan1", "onResponse: "+response.body().size());
+
+                String valuelist = String.valueOf(response.body().size());
+                Intent intent = new Intent();
+                intent.putExtra("list", valuelist);
+                setResult(RESULT_OK , intent);
 
                 LoadingListAdapter loadinglistadapter = new LoadingListAdapter(loadingListModelList,Loadinglists.this );
                 recyclerView.setAdapter(loadinglistadapter);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -42,19 +43,27 @@ public class Loadingqc extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         LoadingQCApi loadingQCApi = retrofit.create(LoadingQCApi.class);
         Call<List<LoadingQCModel>> call = loadingQCApi.getqcmodel();
 
         call.enqueue(new Callback<List<LoadingQCModel>>() {
             @Override
             public void onResponse(Call<List<LoadingQCModel>> call, Response<List<LoadingQCModel>> response) {
+
                 if (!response.isSuccessful()){
                     Toast.makeText(Loadingqc.this, response.code(), Toast.LENGTH_SHORT).show();
-                    return;
+                    return ;
                 }
                 List<LoadingQCModel> loadingQCModelList = response.body();
+                Log.d("Aryan1", "onResponse: "+response.body().size());
                 LoadingQCAdapter loadingQCadapter = new LoadingQCAdapter(loadingQCModelList,Loadingqc.this );
                 recyclerView.setAdapter(loadingQCadapter);
+
+                String valueqc = String.valueOf(response.body().size());
+                Intent intent = new Intent();
+                intent.putExtra("qc", valueqc);
+                setResult(RESULT_OK, intent);
             }
 
             @Override

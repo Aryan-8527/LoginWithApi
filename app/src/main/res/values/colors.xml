@@ -8,5 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Red">#BC1C1C</color>
-    <color name="CardBackground">#8D829C</color>
+    <color name="grey">#B1A3A3</color>
+    <color name="orange">#FF5722</color>
+    <color name="green">#4CAF50</color>
+    <color name="skyblue">#2196F3</color>
+    <color name="CardBackground">#7F7B85</color>
 </resources>

@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userlogin.APi.LoadingInvoiceApi;
@@ -51,6 +53,13 @@ public class Loadinginvoice extends AppCompatActivity {
                     return;
                 }
                 List<LoadingInvoiceModel> loadinginvoiceModelList = response.body();
+                Log.d("Aryan1", "onResponse: "+response.body().size());
+
+                String valueinvoice = String.valueOf(response.body().size());
+                Intent intent = new Intent();
+                intent.putExtra("invoice", valueinvoice);
+                setResult(RESULT_OK, intent);
+
                 LoadingInvoiceAdapter loadingInvoiceadapter = new LoadingInvoiceAdapter(loadinginvoiceModelList,Loadinginvoice.this );
                 recyclerView.setAdapter(loadingInvoiceadapter);
             }

@@ -1,14 +1,18 @@
 package com.example.userlogin.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.userlogin.Loadinglines;
 import com.example.userlogin.Models.LoadingListModel;
 import com.example.userlogin.R;
 
@@ -38,6 +42,22 @@ public class LoadingListAdapter extends RecyclerView.Adapter<LoadingListAdapter.
         holder.listcustomerno.setText(model.getCustomer_No());
         holder.listcustomername.setText(model.getCustomer_Name());
         holder.listtransportername.setText(model.getTransporter_Name());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String no = holder.listno.getText().toString();
+                String Cname = holder.listcustomername.getText().toString();
+                String Cno = holder.listcustomerno.getText().toString();
+
+                Intent i = new Intent(context , Loadinglines.class);
+                i.putExtra("listno", no);
+                i.putExtra("customername" , Cname);
+                i.putExtra("customerno" , Cno);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -57,5 +77,4 @@ public class LoadingListAdapter extends RecyclerView.Adapter<LoadingListAdapter.
             listtransportername = itemView.findViewById(R.id.loadinglist_Transporter_Name);
         }
     }
-
 }
