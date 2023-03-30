@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="10dp"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="5dp"
         app:cardBackgroundColor="@color/CardBackground"
         app:cardMaxElevation="12dp"
         >
@@ -26,14 +24,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="6">
 
                 <TextView
                     android:id="@+id/tv_desciption2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Document No"
+                    android:layout_weight="4"
+                    android:text="Description"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="13dp"
@@ -57,21 +55,25 @@
                     android:layout_weight="1"
                     android:text="Quantity"
                     android:textColor="@color/black"
+                    android:maxLength="4"
                     android:textStyle="bold"
                     android:textSize="13dp"
                     android:layout_margin="10dp" />
 
             </LinearLayout>
 
+
+
             <TextView
-                android:id="@+id/tv_freestock"
+                android:id="@+id/tv_loadingquantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13dp"
+                android:textSize="18dp"
                 android:gravity="end"
                 android:textStyle="bold"
-                android:text="Free Stock "
-                android:layout_margin="10dp"
+                android:maxLength="4"
+                android:text="Loading Quantity"
+                android:layout_marginRight="10dp"
                 android:textColor="@color/black"/>
 
             <LinearLayout
@@ -85,15 +87,15 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp"
                     android:layout_margin="5dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
-                        android:id="@+id/tv_uom"
+                        android:id="@+id/tv_remark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="UOM"
+                        android:textSize="18dp"
+                        android:text="Remark"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/white"
@@ -106,15 +108,15 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp"
                     android:layout_margin="5dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
-                        android:id="@+id/tv_diameter"
+                        android:id="@+id/tv_length_peices"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Diameter"
+                        android:textSize="18dp"
+                        android:text="Lpeices"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/white"
@@ -127,15 +129,15 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp"
                     android:layout_margin="5dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
-                        android:id="@+id/tv_loadedpieces"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_pieces1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Loaded pieces"
+                        android:text="Pieces1"
+                        android:textSize="18dp"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/white"
@@ -148,7 +150,6 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp"
                     android:layout_margin="5dp"
                     app:cardMaxElevation="12dp">
 
@@ -157,6 +158,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pieces"
+                        android:textSize="18dp"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/white"
@@ -166,9 +168,7 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>
 

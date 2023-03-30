@@ -1,6 +1,7 @@
 package com.example.userlogin.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.userlogin.Loadinglineqc;
+import com.example.userlogin.Loadinglineslist;
 import com.example.userlogin.Models.LoadingQCModel;
 import com.example.userlogin.R;
 
@@ -38,6 +41,21 @@ public class LoadingQCAdapter extends RecyclerView.Adapter<LoadingQCAdapter.View
         holder.qccustomerno.setText(model.getCustomer_No());
         holder.qccustomername.setText(model.getCustomer_Name());
         holder.qctransportername.setText(model.getTransporter_Name());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String no = holder.qcno.getText().toString();
+                String Cname = holder.qccustomername.getText().toString();
+                String Cno = holder.qccustomerno.getText().toString();
+
+                Intent i = new Intent(context , Loadinglineqc.class);
+                i.putExtra("qcno", no);
+                i.putExtra("qccustomername" , Cname);
+                i.putExtra("qccustomerno" , Cno);
+                context.startActivity(i);
+            }
+        });
 
     }
 

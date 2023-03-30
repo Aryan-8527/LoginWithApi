@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface LoadingInvoiceApi {
 
     @GET("LoadingInvoice")
-    Call<List<LoadingInvoiceModel>> getloadinginvoicemodel();
+    Call<List<LoadingInvoiceModel>> getloadinginvoicemodel ();
 }

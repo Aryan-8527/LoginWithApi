@@ -10,11 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userlogin.APi.LoadingInvoiceApi;
-import com.example.userlogin.APi.LoadingQCApi;
 import com.example.userlogin.Adapters.LoadingInvoiceAdapter;
-import com.example.userlogin.Adapters.LoadingQCAdapter;
 import com.example.userlogin.Models.LoadingInvoiceModel;
-import com.example.userlogin.Models.LoadingQCModel;
 
 import java.util.List;
 

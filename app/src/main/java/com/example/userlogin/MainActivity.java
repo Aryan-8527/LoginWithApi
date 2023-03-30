@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public EditText USERID , PASSWORD ;
     Button LOGIN ;
+    ProgressBar progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         USERID = findViewById(R.id.ed_userid);
         PASSWORD = findViewById(R.id.ed_password);
         LOGIN = findViewById(R.id.bt_login);
+        progressbar = findViewById(R.id.ProgressBar);
 
         LOGIN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     checking(USERID.getText().toString() , PASSWORD.getText().toString().replace("#" , "%23"));
+                    progressbar.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response) {
+
                         try {
                             JSONObject obj = new JSONObject(response);
                             String status = obj.getString("Result");
@@ -68,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.commit();
                                 Intent i = new Intent(MainActivity.this, MainActivity2.class);
+                                progressbar.setVisibility(View.GONE);
                                 Toast.makeText(MainActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
                                 startActivity(i);
                             } else {
                                 Toast.makeText(MainActivity.this, "Incorrect Userid & Password !! ", Toast.LENGTH_SHORT).show();
+                                progressbar.setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

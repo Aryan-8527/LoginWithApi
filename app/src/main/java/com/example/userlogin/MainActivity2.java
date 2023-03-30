@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,6 @@ public class MainActivity2 extends AppCompatActivity {
     public TextView loadingqcapisize;
     public TextView loadinginvoiceapisize;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class MainActivity2 extends AppCompatActivity {
         loadinglistapisize = findViewById(R.id.tv_loadinglist_apilength);
         loadingqcapisize = findViewById(R.id.tv_loadingqc_apilength);
         loadinginvoiceapisize = findViewById(R.id.tv_loadinginvoice_apilength);
+
 
         loadinglistapisize.setText("3");
         loadinginvoiceapisize.setText("4229");

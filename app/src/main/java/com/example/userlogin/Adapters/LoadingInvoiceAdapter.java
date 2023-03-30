@@ -1,6 +1,7 @@
 package com.example.userlogin.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.userlogin.Loadinglineinvoice;
+import com.example.userlogin.Loadinglineqc;
 import com.example.userlogin.Models.LoadingInvoiceModel;
 import com.example.userlogin.R;
 
@@ -39,6 +42,23 @@ public class LoadingInvoiceAdapter extends RecyclerView.Adapter<LoadingInvoiceAd
         holder.invoicecustomerno.setText(model.getCustomer_No());
         holder.invoicecustomername.setText(model.getCustomer_Name());
         holder.invoicetransportername.setText(model.getTransporter_Name());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ino = holder.invoiceno.getText().toString();
+                String iCname = holder.invoicecustomername.getText().toString();
+                String iCno = holder.invoicecustomerno.getText().toString();
+
+                Intent i = new Intent(context , Loadinglineinvoice.class);
+                i.putExtra("invoiceno", ino);
+                i.putExtra("invoicecustomername" , iCname);
+                i.putExtra("invoicecustomerno" , iCno);
+                context.startActivity(i);
+
+            }
+        });
+
     }
 
     @Override

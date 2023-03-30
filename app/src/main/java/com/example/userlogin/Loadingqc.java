@@ -26,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Loadingqc extends AppCompatActivity {
 
-
     private RecyclerView recyclerView;
 
     @Override

@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.userlogin.APi.LoadingListApi;
@@ -25,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Loadinglists extends AppCompatActivity {
 
     private RecyclerView recyclerView ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class Loadinglists extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         LoadingListApi loadingListApi = retrofit.create(LoadingListApi.class);
         Call<List<LoadingListModel>> call = loadingListApi.getloadinglistmodel();
 
@@ -51,7 +55,6 @@ public class Loadinglists extends AppCompatActivity {
                 }
 
                 List<LoadingListModel> loadingListModelList = response.body();
-                Log.d("Aryan1", "onResponse: "+response.body().size());
 
                 String valuelist = String.valueOf(response.body().size());
                 Intent intent = new Intent();

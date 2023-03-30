@@ -30,7 +30,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tv_no"
+                        android:id="@+id/tv_invoiceno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -48,7 +48,7 @@
                     android:weightSum="4">
 
                     <TextView
-                        android:id="@+id/tv_customername"
+                        android:id="@+id/tv_invoicecustomername"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -59,11 +59,12 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_customerno"
+                        android:id="@+id/tv_invoicecustomerno"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="2"
+                        android:gravity="end"
                         android:text="Customer No"
                         android:textColor="@color/white"
                         android:textSize="13dp"
@@ -76,36 +77,36 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/img_scanqr"
+            android:id="@+id/img_invoicescanqr"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_margin="10dp"
             android:src="@drawable/scanqr" />
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:weightSum="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
 
-           <TextView
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="2"
-               android:text="Kanta Wt:"
-               android:textColor="@color/black"
-               android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Kanta Wt:"
+                android:textColor="@color/black"
+                android:gravity="center"/>
 
-           <TextView
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="2"
-               android:text="Refrence Number:"
-               android:textColor="@color/black"
-               android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Refrence Number:"
+                android:textColor="@color/black"
+                android:gravity="center"/>
 
-       </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,10 +133,9 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/loadinglinerecyclerview"
+            android:id="@+id/loadinglineinvoicerecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -147,24 +147,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:weightSum="3">
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="16dp"
-        android:text="Lines: 2"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="10dp"/>
+        android:weightSum="4">
 
         <TextView
+            android:id="@+id/tv_invoicelines"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:text="Lines: 2"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_invoiceqcqty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
             android:text="QTY: 0.0 out of 20.0"
             android:layout_margin="10dp"
+            android:gravity="end"
             android:textStyle="bold"
             android:textColor="@color/Red"
             android:textSize="16dp"/>
