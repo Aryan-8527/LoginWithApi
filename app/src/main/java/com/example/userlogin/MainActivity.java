@@ -3,6 +3,7 @@ package com.example.userlogin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "UserId & Password not be Null !!!", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    checking(USERID.getText().toString() , PASSWORD.getText().toString().replace("#" , "%23"));
+                    checking(USERID.getText().toString() , PASSWORD.getText().toString());
                     progressbar.setVisibility(View.VISIBLE);
                 }
             }
@@ -58,9 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         String url = "http://103.125.53.126:9222/api/LoadingList?userid=" + user + "&password=" + pass;
+
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
-
                     @Override
                     public void onResponse(String response) {
 

@@ -9,31 +9,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.userlogin.Models.LoadingLineListModel;
+import com.example.userlogin.Models.LoadingLineModel;
 import com.example.userlogin.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class LoadingLineListAdapter extends RecyclerView.Adapter<LoadingLineListAdapter.Viewholder> {
-    List<LoadingLineListModel> loadinglinemodellist ;
+public class LoadingLineAdapter extends RecyclerView.Adapter<LoadingLineAdapter.Viewholder> {
+    ArrayList<LoadingLineModel> loadinglinemodellist ;
     Context context;
 
-    public LoadingLineListAdapter(List<LoadingLineListModel> loadinglinemodellist, Context context) {
+    public LoadingLineAdapter(ArrayList<LoadingLineModel> loadinglinemodellist, Context context) {
         this.loadinglinemodellist = loadinglinemodellist;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public LoadingLineListAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LoadingLineAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layoutlinelist, parent , false);
         return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LoadingLineListAdapter.Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull LoadingLineAdapter.Viewholder holder, int position) {
 
-        LoadingLineListModel model = loadinglinemodellist.get(position);
+        LoadingLineModel model = loadinglinemodellist.get(position);
 
         holder.description_2.setText(model.getDescription_2());
         holder.length.setText(model.getLength());
@@ -43,6 +43,7 @@ public class LoadingLineListAdapter extends RecyclerView.Adapter<LoadingLineList
         holder.pieces1.setText(model.getPieces());
         holder.pieces.setText(model.getPieces());
         holder.lpeices.setText(model.getPeices());
+
     }
 
     @Override
@@ -59,7 +60,6 @@ public class LoadingLineListAdapter extends RecyclerView.Adapter<LoadingLineList
         TextView lpeices;
         TextView pieces1;
         TextView pieces;
-
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);

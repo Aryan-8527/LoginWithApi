@@ -135,7 +135,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/loadinglineinvoicerecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            >
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -155,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16dp"
-            android:text="Lines: 2"
+            android:text="Lines: 0"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_margin="10dp"/>

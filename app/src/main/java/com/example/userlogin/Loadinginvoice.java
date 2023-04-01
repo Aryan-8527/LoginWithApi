@@ -46,11 +46,12 @@ public class Loadinginvoice extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<LoadingInvoiceModel>> call, Response<List<LoadingInvoiceModel>> response) {
                 if (!response.isSuccessful()){
-                    Toast.makeText(Loadinginvoice.this, response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Loadinginvoice.this, response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
                 List<LoadingInvoiceModel> loadinginvoiceModelList = response.body();
                 Log.d("Aryan1", "onResponse: "+response.body().size());
+
 
                 String valueinvoice = String.valueOf(response.body().size());
                 Intent intent = new Intent();

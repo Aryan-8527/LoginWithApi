@@ -36,9 +36,9 @@ public class MainActivity2 extends AppCompatActivity {
         loadinginvoiceapisize = findViewById(R.id.tv_loadinginvoice_apilength);
 
 
-        loadinglistapisize.setText("3");
+        loadinglistapisize.setText("2");
+        loadingqcapisize.setText("15");
         loadinginvoiceapisize.setText("4229");
-        loadingqcapisize.setText("14");
 
         LOADINGLIST.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,6 @@ public class MainActivity2 extends AppCompatActivity {
             if (requestCode == MY_REQUEST_CODE1) {
                 if (data != null)
                     loadinglistapisize.setText(data.getStringExtra("list"));
-
             } else if (requestCode == MY_REQUEST_CODE2) {
                 if (data != null)
                     loadingqcapisize.setText(data.getStringExtra("qc"));

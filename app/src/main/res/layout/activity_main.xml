@@ -16,23 +16,49 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="50dp"/>
 
-    <EditText
-        android:id="@+id/ed_userid"
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:hint="Enter USERID"
-        android:inputType="text"
-        android:layout_marginTop="10dp"/>
+        android:textColorHint="@color/black"
+        android:hint="Enter UserId"
+        android:scrollbarSize="18dp"
+        android:layout_marginTop="10dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_userid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:inputType="textPassword"
+            android:ems="15"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/black"
+        android:hint="Enter password..."
+        app:passwordToggleTint="@color/black"
+        app:passwordToggleEnabled="true"
+        android:scrollbarSize="18dp"
+        android:layout_marginTop="10dp">
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ed_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="text"
-        android:layout_marginTop="10dp"/>
+        android:textSize="18dp"
+        android:inputType="textPassword"
+        android:ems="15"/>
+
+</com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/bt_login"
@@ -42,7 +68,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"/>
 
-
     <ProgressBar
         android:id="@+id/ProgressBar"
         android:layout_width="50dp"
@@ -50,6 +75,5 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:visibility="gone"/>
-
 
 </LinearLayout>

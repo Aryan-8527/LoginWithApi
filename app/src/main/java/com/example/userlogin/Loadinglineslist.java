@@ -9,32 +9,40 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.userlogin.APi.LoadingLineListApi;
-import com.example.userlogin.Adapters.LoadingLineListAdapter;
-import com.example.userlogin.Models.LoadingLineListModel;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.userlogin.Adapters.LoadingLineAdapter;
+import com.example.userlogin.Models.LoadingLineModel;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Loadinglineslist extends AppCompatActivity {
      public static TextView number ;
      TextView customername , customerno ;
      ImageView qrimg ;
      TextView lines , totalqty ;
+     RecyclerView recyclerView;
+    ArrayList<LoadingLineModel> loadinglinemodel;
+    LoadingLineAdapter adapter;
 
-     private RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,7 @@ public class Loadinglineslist extends AppCompatActivity {
         lines = findViewById(R.id.tv_lines);
         totalqty = findViewById(R.id.tv_qty);
 
+
         recyclerView = findViewById(R.id.loadinglinerecyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -60,68 +69,61 @@ public class Loadinglineslist extends AppCompatActivity {
         customername.setText(Cname);
         number.setText(no);
 
-        // fetch data loadingline through APi //
+        String yourDocumentNo = no;
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://103.125.53.126:9222/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://103.125.53.126:9222/api/LoadingLines?DocumentNo=" + yourDocumentNo;
+        Log.d("Aryan", "onCreate: "+url);
 
-        LoadingLineListApi loadinglineApi = retrofit.create(LoadingLineListApi.class);
-        Call<List<LoadingLineListModel>> call = loadinglineApi.getloadinglinemodel();
-        call.enqueue(new Callback<List<LoadingLineListModel>>() {
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            List<LoadingLineModel> list = new ArrayList<>();
+
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                String valuelist = String.valueOf(jsonArray.length());
+                                lines.setText("Lines: "+valuelist);
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String Description_2 = jsonObject.getString("Description_2");
+                                String Length = jsonObject.getString("Length");
+                                String Quantity = jsonObject.getString("Quantity");
+                                String Loading_Quantity = jsonObject.getString("Loading_Quantity");
+                                String Remarks = jsonObject.getString("Remarks");
+                                String Peices = jsonObject.getString("Peices");
+                                String Pieces = jsonObject.getString("Pieces");
+
+                                LoadingLineModel data = new LoadingLineModel(Description_2, Length, Quantity , Loading_Quantity,Remarks , Peices , Pieces  );
+                                list.add(data);
+                            }
+
+                            LoadingLineAdapter adapter = new LoadingLineAdapter((ArrayList<LoadingLineModel>) list, Loadinglineslist.this);
+                            recyclerView.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
             @Override
-            public void onResponse(Call<List<LoadingLineListModel>> call, Response<List<LoadingLineListModel>> response) {
-                if (!response.isSuccessful()){
-                    Toast.makeText(Loadinglineslist.this, response.code(), Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-                List<LoadingLineListModel> loadinglineModelList = response.body();
-                String valuelist = String.valueOf(response.body().size());
-                lines.setText("Lines: "+valuelist);
-                LoadingLineListAdapter loadinglineadapter = new LoadingLineListAdapter(loadinglineModelList, Loadinglineslist.this );
-                recyclerView.setAdapter(loadinglineadapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<LoadingLineListModel>> call, Throwable t) {
-                Toast.makeText(Loadinglineslist.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        Retrofit retrofits = new Retrofit.Builder()
-                .baseUrl("http://103.125.53.126:9222/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        LoadingLineListApi loadinglineApis = retrofits.create(LoadingLineListApi.class);
-        Call<List<LoadingLineListModel>> calls = loadinglineApis.getloadinglinemodel();
-        calls.enqueue(new Callback<List<LoadingLineListModel>>() {
-            @Override
-            public void onResponse(Call<List<LoadingLineListModel>> call, Response<List<LoadingLineListModel>> response) {
-                if (!response.isSuccessful()){
-                    Toast.makeText(Loadinglineslist.this, response.code(), Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-                List<LoadingLineListModel> loadinglineModelList = response.body();
-                String valuelist = String.valueOf(response.body().size());
-                lines.setText("Lines: "+valuelist);
-                LoadingLineListAdapter loadinglineadapter = new LoadingLineListAdapter(loadinglineModelList, Loadinglineslist.this );
-                recyclerView.setAdapter(loadinglineadapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<LoadingLineListModel>> call, Throwable t) {
-                Toast.makeText(Loadinglineslist.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Loadinglineslist.this, "Error to fetch Data", Toast.LENGTH_SHORT).show();
             }
         });
+        queue.add(request);
 
-            // QR code scanner //
+
+        // QR code scanner //
 
         qrimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               scanCode();
+                scanCode();
             }
         });
     }

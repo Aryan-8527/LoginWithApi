@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/CardBackground"
+        app:cardMaxElevation="12dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6">
+
+                <TextView
+                    android:id="@+id/tvi_desciption2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Description"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvi_length"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="length"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:layout_margin="10dp" />
+
+                <TextView
+                    android:id="@+id/tvi_quantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quantity"
+                    android:textColor="@color/black"
+                    android:maxLength="4"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvi_loadingquantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:maxLength="4"
+                android:text="Loading Quantity"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    android:layout_margin="5dp"
+                    app:cardMaxElevation="12dp">
+
+                    <TextView
+                        android:id="@+id/tvi_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="Remark"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@color/skyblue"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    android:layout_margin="5dp"
+                    app:cardMaxElevation="12dp">
+
+                    <TextView
+                        android:id="@+id/tvi_length_peices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="Lpeices"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@color/green"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    android:layout_margin="5dp"
+                    app:cardMaxElevation="12dp">
+
+                    <TextView
+                        android:id="@+id/tvi_pieces1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pieces1"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@color/orange"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="10dp"
+                    android:layout_margin="5dp"
+                    app:cardMaxElevation="12dp">
+
+                    <TextView
+                        android:id="@+id/tvi_pieces"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pieces"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@color/grey"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

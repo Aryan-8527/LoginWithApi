@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.userlogin.Loadinglineinvoice;
-import com.example.userlogin.Loadinglineqc;
 import com.example.userlogin.Models.LoadingInvoiceModel;
 import com.example.userlogin.R;
 
